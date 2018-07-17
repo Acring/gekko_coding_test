@@ -17,13 +17,16 @@ var yearFormat = d3.timeFormat("%Y");
 let yearScale;
 (function(){
 	
-	d3.csv("./data.csv").then(function(d){  // generate the entity data.
+	getData();
+
+}());
+
+async function getData(){
+	await d3.csv("./data.csv").then(function(d){  // generate the entity data.
 		entitys = d;
 		initEntitys();
-
 	}); 
-
-	d3.csv("./links.csv").then(function(d){  // generate the chart by entitys and their relationship.
+	await d3.csv("./links.csv").then(function(d){  // generate the chart by entitys and their relationship.
 		
 		d.forEach((r)=>{
 			r.year = +r.year;
@@ -33,7 +36,7 @@ let yearScale;
 		initGraph();
 		initTimeLine();
 	})
-}());
+}
 
 
 function initEntitys(){
@@ -350,9 +353,10 @@ function control_data(year){  // control the nodes by year slider.
 
 	relationships.forEach((relationship)=>{
 		if(relationship.year == year){
+			console.log('entitys', entitys);
 			edges.push(JSON.parse(JSON.stringify(relationship)));
-			nodes.add(JSON.parse(JSON.stringify(entitys[relationship.source])));
-			nodes.add(JSON.parse(JSON.stringify(entitys[relationship.target])));
+			entitys && nodes.add(JSON.parse(JSON.stringify(entitys[relationship.source])));
+			entitys && nodes.add(JSON.parse(JSON.stringify(entitys[relationship.target])));
 		}
 	});
 
