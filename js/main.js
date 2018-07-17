@@ -14,7 +14,7 @@ let currentEntity;
 let forceSimulation = null;
 let margin = 10;
 var yearFormat = d3.timeFormat("%Y");
-
+let yearScale;
 (function(){
 	
 	d3.csv("/data.csv").then(function(d){  // generate the entity data.
@@ -83,16 +83,25 @@ function initEntitys(){
 			einfo.append("p")
 				.attr("class", "content")
 				.html(d.info);
-
+			let move = false;
 			d3.select(".ticks")
 				.selectAll("text")
 				.attr("fill", function(a){
 					let yearFormat = d3.timeFormat("%Y")
-
+					
 					for(let i = 0; i < relationships.length; i++){
 						if(relationships[i].target == d.id || relationships[i].source == d.id){
 
 							if(relationships[i].year == yearFormat(a)){
+								if(move === false){
+									console.log("test")
+									d3.select(".handle")
+										.attr("transform", `translate(${yearScale(a)})`)
+									d3.select(".label")
+										.text(relationships[i].year)
+									control_data(relationships[i].year)
+									move = true;
+								}
 								return "#22bb22";
 							}
 						}
@@ -112,6 +121,8 @@ function initEntitys(){
 					}
 					return "12px";		
 				});
+
+
 		})
 
 
@@ -161,10 +172,10 @@ function generateGraph(){
 						.append("g")
 						.attr("class", "circleText")
 						.attr("transform", function(d){ 
-							d.x = width / 2;
-							d.y = height / 2;
+							d.x = width/2 + Math.random()*200;
+							d.y = height/2+Math.random()*200;
 
-							return `translate(${width/2}, ${height/2})`
+							return `translate(${d.x}, ${d.y})`
 						})
 						.call(d3.drag()
 								.on("start", function(d){
@@ -208,7 +219,7 @@ function generateGraph(){
 					return colorScale(i);
 				})
 				.style("cursor", "pointer");
-				
+
 	circleText.append("text")
 				.attr("x", -10)
 				.attr("y", -15)
@@ -339,7 +350,6 @@ function control_data(year){  // control the nodes by year slider.
 
 	relationships.forEach((relationship)=>{
 		if(relationship.year == year){
-
 			edges.push(JSON.parse(JSON.stringify(relationship)));
 			nodes.add(JSON.parse(JSON.stringify(entitys[relationship.source])));
 			nodes.add(JSON.parse(JSON.stringify(entitys[relationship.target])));
