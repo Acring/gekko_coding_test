@@ -1,0 +1,11 @@
+year,source,relationship,target
+2011,0,acquired,1
+2012,2,sued,3
+2012,4,sued,0
+2014,4,decreased stake of,5
+2014,6,increased stake of,1
+2015,7,decreased stake of,8
+2015,9,Is CEO of,10
+2016,11,increased stake of,12
+2016,13,cooperated with,14
+2017,15,acquired,14

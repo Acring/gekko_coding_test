@@ -1,0 +1,156 @@
+html{
+	height: 100%;
+	background-color: #fcfcfc;
+}
+.title{
+	width: auto;
+	text-align: center;
+}
+
+.window{
+	width: 86%;
+	min-height: 720px;
+	margin: 20px auto;
+}
+
+.row{
+	display: flex;
+	width: 100%;
+}
+
+.entitys{
+	flex: 1;
+	background-color: #fff;
+	padding: 5px;
+	margin: 5px;
+	/*height: 600px;*/
+	/*overflow-y: auto;*/
+	border-radius: 5px;
+	border: 1px solid darkgray;
+}
+
+.chart{
+	flex: 3;
+	margin: 5px;
+	min-width: 300px;
+	height: 660px;
+	border: 1px solid darkgray;
+	border-radius: 5px;
+	background-color: #fff;
+	box-shadow: 2px 2px darkgray;
+}
+
+.entity{
+	width: 70px;
+	float: left;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.entity-infos{
+	flex: 1.2;
+	margin: 5px;
+	min-height: 200px;
+	border: 1px solid darkgray;
+	border-radius: 5px;
+	padding: 5px;
+}
+.name{
+	font-weight: 600;
+	font-size: 32px;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+
+.content{
+	font-weight: 300;
+	padding-top: 20px;
+}
+
+.entity-pic{
+	width: 64px;
+	height: 60px;
+	padding: 2px;
+	border-radius: 50%;
+	border: 2px solid #373737;
+}
+
+.entity-pic:hover{
+	border: 2px solid #2ca02c;
+}
+.entity-pic:hover + .entity-name{
+	color: #2ca02c;
+}
+
+.clicked{
+	border: 2px solid #2ca02c;
+}
+
+.clicked + .entity-name{
+	color: #2ca02c;
+}
+
+.entity-name{
+	text-align: center;
+	font-weight: 600;
+}
+
+.entitys::-webkit-scrollbar
+{
+    width: 5px;
+    height: 5px;
+    background-color: #F5F5F5;
+}
+
+.entitys::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.entitys::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #84a488;
+}
+
+.ticks {
+      font-size: 12px;
+    }
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
+
+.label{
+	font-size: 15px;
+	color: #17becf;
+}
