@@ -17,13 +17,13 @@ var yearFormat = d3.timeFormat("%Y");
 let yearScale;
 (function(){
 	
-	d3.csv("/data.csv").then(function(d){  // generate the entity data.
+	d3.csv("./data.csv").then(function(d){  // generate the entity data.
 		entitys = d;
 		initEntitys();
 
 	}); 
 
-	d3.csv("/links.csv").then(function(d){  // generate the chart by entitys and their relationship.
+	d3.csv("./links.csv").then(function(d){  // generate the chart by entitys and their relationship.
 		
 		d.forEach((r)=>{
 			r.year = +r.year;
